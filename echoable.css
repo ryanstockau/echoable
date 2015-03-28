@@ -1,0 +1,64 @@
+.echoable {
+	position:relative;
+}
+
+.echoable > .echos {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	width:auto;
+	height:auto;
+	x_z-index:-1;
+	overflow:hidden;
+	display:block;
+}
+
+.echoable > .echos > .echo {
+	position:absolute;
+	
+	width:0;
+	height:0;
+	margin:0;
+	padding:100%;	
+	
+	
+	left:50%;
+	top:50%;
+	right:auto;
+	bottom:auto;
+	
+	transform:scale(0,0);
+	
+	margin-left: -100%;
+  	margin-top: -100%;
+	
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border-radius:50%;
+	display:block;
+}
+
+.echoable-large > .echos > .echo {
+	padding:20%;
+	margin-left:-20%;
+	margin-top:-20%;	
+}
+
+.echos > .echo-click {
+	background:#000;
+	opacity:0.08;
+}
+
+.echos > .echo-hover {
+	background:#fff;
+	opacity:0.08;
+}
+
+.echoable.echoing > .echos > .echo-main,
+.echoable.clicking > .echos > .echo-click,
+.btn:hover  > .echos > .echo-hover,
+.btn.clicking > .echos > .echo-click {	
+	transform:scale(1,1);
+}
