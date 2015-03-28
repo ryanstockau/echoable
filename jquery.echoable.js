@@ -35,7 +35,7 @@ www.ryanstock.com.au
 			clickTarget : 'click touchend',
 			largeWidth : 400,
 			triggerDelay : 40,
-			animimationDelay : 1000,
+			animationDelay : 1000,
 			largeClass : 'echoable-large'
 		},
 		
@@ -75,13 +75,11 @@ www.ryanstock.com.au
 			return self;
 		},
 		
-		triggerEcho : function() {
+		triggerEcho : function(x,y) {
 			var self = this;
 			var $el = self.$elem;
-			var x_offset = e.pageX - $el.offset().left;
-			var y_offset = e.pageY - $el.offset().top;
-			var xPercent = x_offset / $el.outerWidth() * 100;
-			var yPercent = y_offset / $el.outerHeight() * 100;
+			var xPercent = x / $el.outerWidth() * 100;
+			var yPercent = y / $el.outerHeight() * 100;
 			var $click_echo = self.$click_echo;
 			
 			$click_echo
@@ -103,15 +101,17 @@ www.ryanstock.com.au
 		_initHandlers : function() {
 			var self = this;
 			if ( self.config.clickable ) {
-				self.$elem.on(self.config.clickTarget, self._handleClick);
+				self.$elem.on(self.config.clickTarget, {self:self}, self._handleClick);
 			}
 		},
 		
 		_handleClick : function( e ) {
-			var self = this;
+			var self = e.data.self;
 			e.preventDefault();
-			console.log( this );
-			self.triggerEcho();
+			var $el = self.$elem;
+			var x = e.pageX - $el.offset().left;
+			var y = e.pageY - $el.offset().top;
+			self.triggerEcho( x, y );
 			return false;			
 		}
 		
