@@ -118,6 +118,7 @@
 				//
 			};
 			self.triggerEcho( x, y ).then( callback );
+			return true;
 		}
 
 	}
